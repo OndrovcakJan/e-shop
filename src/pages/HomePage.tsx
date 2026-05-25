@@ -5,7 +5,7 @@ export default function HomePage() {
   const params = useParams();
   const category = params.category;
   return (
-    <div>
+    <div className="min-h-screen bg-background">
       <Header category={category} />
       <h1>Homepage</h1>
     </div>

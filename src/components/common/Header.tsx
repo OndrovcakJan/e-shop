@@ -1,15 +1,16 @@
 import { Link } from "react-router";
 import { ShoppingCart } from "lucide-react";
 import SearchBar from "../features/SearchBar";
+import Hamburger from "../features/Hamburger";
 
 const validCategory = ["all", "men", "women", "jewelry", "electronics"];
 interface Props {
-  category: string;
+  category?: string;
 }
 
 export default function Header({ category }: Props) {
   let cat: string;
-  if (validCategory.includes(category)) {
+  if (category && validCategory.includes(category)) {
     cat = category;
   } else {
     cat = "all";
@@ -24,33 +25,34 @@ export default function Header({ category }: Props) {
   }
   return (
     <>
-      <div className="hidden md:flex">
-        <Link to="/" className="">
+      <div className="hidden md:flex mt-1 mx-1">
+        <Link to="/" className="text-primary font-extrabold">
           VON
         </Link>
-        <div>
+        <div className="mx-auto flex gap-1.5">
           <Link to="/" className={getClass("all")}>
             Shop all
           </Link>
-          <Link to="/" className={getClass("men")}>
+          <Link to="/men" className={getClass("men")}>
             Men
           </Link>
-          <Link to="/" className={getClass("women")}>
+          <Link to="/women" className={getClass("women")}>
             Women
           </Link>
-          <Link to="/" className={getClass("jewelry")}>
+          <Link to="/jewlery" className={getClass("jewelry")}>
             Jewelry
           </Link>
-          <Link to="/" className={getClass("electronics")}>
+          <Link to="/electronics" className={getClass("electronics")}>
             Electronics
           </Link>
         </div>
         <SearchBar />
-        <ShoppingCart />
+        <ShoppingCart className="ml-3"/>
       </div>
 
-      <div className="flex md:hidden">
-        <h1>Hambac</h1>
+      <div className="flex md:hidden mt-1 mx-1">
+        <Link to="/" className="mr-auto font-extrabold text-primary">VON</Link>
+        <Hamburger />
       </div>
     </>
   );
