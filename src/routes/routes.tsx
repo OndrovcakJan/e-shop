@@ -4,13 +4,13 @@ import ProductDetail from "../pages/ProductDetail";
 
 const router = createBrowserRouter([
   {
-    path: "/:category?",
-    element: <HomePage />,
-  },
-  {
     path: "/product/:id",
     element: <ProductDetail />,
   },
+  {
+    path: "/:category?",
+    element: <HomePage />,
+  },  
 ]);
 
 export default router;

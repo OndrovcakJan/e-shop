@@ -1,6 +1,6 @@
-import Header from "../components/common/Header";
-import { getProducts, getProduct, type Product } from "../services/apiService";
-import { useParams } from "react-router-dom";
+//import Header from "../components/common/Header";
+import { getProduct, type Product } from "../services/apiService";
+import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 
 const ProductDetail = () => {
@@ -16,8 +16,10 @@ const ProductDetail = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
+  console.log("ProductDetail", { id, product });
+
   if (loading) return <div>loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div>halo, Error: {error}</div>;
   if (!product) return <div>Product not found</div>;
 
   return <div>ProductDetail Page</div>;
