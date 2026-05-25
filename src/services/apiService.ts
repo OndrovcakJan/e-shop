@@ -17,14 +17,15 @@ export type Product = {
     description: string;
     category: string;
     image: string;
+    rating: {
+        rate: number;
+        count: number;
+    };
 }
 
-export const getProducts = () => {
-    apiFetch<Product[]>("/products");
-}
+export const getProducts = () => apiFetch<Product[]>("/products");
 
-export const getProduct = (id: number) => {
-    apiFetch<Product>(`/products/${id}`);
-}
+export const getProduct = (id: number) => apiFetch<Product>(`/products/${id}`);
+
 
 
