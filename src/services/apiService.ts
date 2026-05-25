@@ -1,16 +1,14 @@
+import axios, { type AxiosRequestConfig } from "axios";
+
 const API_BASE_URL = "https://fakestoreapi.com";
 
 async function apiFetch<T>(
   endpoint: string,
-  options?: RequestInit,
+
+  options?: AxiosRequestConfig,
 ): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
-
-  if (!response.ok) {
-    throw new Error(`API request failed with status ${response.status}`);
-  }
-
-  return response.json();
+  const response = await axios(`${API_BASE_URL}${endpoint}`, options);
+  return response.data;
 }
 
 export type Product = {
