@@ -30,7 +30,7 @@ export default function Options({category}: Props) {
         })}
       </div>
 
-      <select className="ml-auto px-3 py-2 border border-gray-400 rounded-[5px]">
+      <select className="ml-auto px-3 py-2 border border-gray-400 rounded-[10px]">
         <option>Sort by: Choose</option>
         <option>Price: Low to High</option>
         <option>Price: High to Low</option>
