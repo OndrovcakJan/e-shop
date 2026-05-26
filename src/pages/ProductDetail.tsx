@@ -13,7 +13,8 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await getProduct(Number(id));
+        const data = await getProduct(Number(id));
+        setProduct(data);
       } catch (err) {
         if (err instanceof AxiosError) {
           setError(err.message);
@@ -23,7 +24,7 @@ const ProductDetail = () => {
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchData();
   }, [id]);
 
@@ -35,5 +36,5 @@ const ProductDetail = () => {
 
   return <div>ProductDetail Page</div>;
 };
-    
+
 export default ProductDetail;
