@@ -9,14 +9,14 @@ const QuantityCounter = ({ quantity, onIncrease, onDecrease }: Props) => {
     <div className="flex items-center border border-gray-300 rounded-lg">
       <button
         onClick={onDecrease}
-        className="px-3 py-2 hover:bg-gray-100 rounded-l-lg"
+        className="px-3 py-2 hover:bg-gray-100 rounded-l-lg cursor-pointer"
       >
         -
       </button>
       <span className="px-4 py-2 border-gray-300 text-sm">{quantity}</span>
       <button
         onClick={onIncrease}
-        className="px-3 py-2  hover:bg-gray-100 rounded-r-lg"
+        className="px-3 py-2  hover:bg-gray-100 rounded-r-lg cursor-pointer"
       >
         +
       </button>

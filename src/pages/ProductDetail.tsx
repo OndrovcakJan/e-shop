@@ -1,5 +1,9 @@
 import Header from "../components/common/Header";
-import { getProduct, type Product } from "../services/apiService";
+import {
+  getProduct,
+  type Product,
+  getProductsByCategory,
+} from "../services/apiService";
 import { Link, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
@@ -12,12 +16,17 @@ const ProductDetail = () => {
   const [error, setError] = useState<string | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [related, setRelated] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getProduct(Number(id));
         setProduct(data);
+
+        const all = await getProductsByCategory(data.category);
+        const filtered = all.filter((p) => p.id !== data.id).slice(0, 3);
+        setRelated(filtered);
       } catch (err) {
         if (err instanceof AxiosError) {
           setError(err.message);
@@ -62,7 +71,7 @@ const ProductDetail = () => {
         <div className="grid grid-cols-[55%_45%]  gap-10">
           {/* levý sloupec */}
 
-          <div className="relative rounded-2xl bg-gray-100 p-10 flex items-center justify-center overflow-hidden ml-8 w-110">
+          <div className="relative rounded-2xl bg-gray-100 p-10 flex items-center justify-center overflow-hidden ml-8 w-105">
             <img
               src={product.image}
               alt={product.title}
@@ -103,13 +112,14 @@ const ProductDetail = () => {
                 onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
               />
               {/* add to cart button */}
-              <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg">
+              <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer">
                 Add to Cart
               </button>
             </div>
           </div>
         </div>
       </div>
+      {/* TODO: render related products */}
       {lightboxOpen && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
