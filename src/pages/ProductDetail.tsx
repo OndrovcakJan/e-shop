@@ -2,6 +2,7 @@
 import { getProduct, type Product } from "../services/apiService";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
+import { AxiosError } from "axios";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -10,10 +11,20 @@ const ProductDetail = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    getProduct(Number(id))
-      .then(setProduct)
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        await getProduct(Number(id));
+      } catch (err) {
+        if (err instanceof AxiosError) {
+          setError(err.message);
+        } else {
+          setError(err as string);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
   }, [id]);
 
   console.log("ProductDetail", { id, product });
