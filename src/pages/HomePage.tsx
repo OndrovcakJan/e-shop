@@ -1,10 +1,45 @@
 import { useParams } from "react-router";
 import Header from "../components/common/Header";
 import Options from "../components/features/Options";
+import { useEffect, useRef, useState } from "react";
+import { getProducts, type Product } from "../services/apiService";
+import { AxiosError } from "axios";
+import ItemCard from "../components/features/ItemCard";
 
 export default function HomePage() {
   const params = useParams();
   const category = params.category;
+
+  const target = useRef<HTMLDivElement>(null);
+
+  function scrollTo() {
+    target.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
+  const [data, setData] = useState<Product[]>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getProducts();
+        setData(data);
+      } catch (err) {
+        if (err instanceof AxiosError) {
+          console.log(err.message);
+        } else {
+          console.log(err);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="h-screen overflow-auto bg-background scroll-smooth">
       <Header category={category} />
@@ -20,19 +55,28 @@ export default function HomePage() {
                   Curated collections designed to elevate your everyday living.
                   Discover quality and craftsmanship.
                 </p>
-                <a
-                  href="#idk"
+                <button
+                  onClick={scrollTo}
                   className="bg-primary mt-4 px-6 py-3 rounded-[15px] text-background font-bold hover:scale-105 transition-transform duration-300"
                 >
                   Explore collection
-                </a>
+                </button>
               </div>
             </div>
           </div>
-          <Options category={category} />
-          <h1 id="idk" className="my-[1000px]">
-            Idk
-          </h1>
+
+          <div ref={target}>
+            <Options category={category} />
+            <div className="flex flex-wrap gap-3.5 justify-center mt-5">
+              {loading ? (
+                <div>Loading products...</div>
+              ) : (
+                data?.map((product) => {
+                  return <ItemCard {...product} />;
+                })
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

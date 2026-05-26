@@ -15,7 +15,7 @@ export default function Options({category}: Props) {
 
   function getClass(to: string): string {
     if (to === cat) {
-      return "bg-black text-background";
+      return "bg-black text-background border-none";
     } else {
       return "";
     }
@@ -26,11 +26,11 @@ export default function Options({category}: Props) {
       <div className="flex gap-3">
         {validCategory.map((category) => {
           const capitalized = `${category.charAt(0).toUpperCase()}${category.slice(1)}`;
-          return <Link to={`/${category}`} className={clsx("rounded-2xl px-2.5", getClass(category))}>{capitalized}</Link>
+          return <Link to={`/${category}`} className={clsx("rounded-2xl px-3 border border-gray-400 transition-colors duration-300", getClass(category))}>{capitalized}</Link>
         })}
       </div>
 
-      <select className="ml-auto px-3 py-2 border border-gray-400 rounded-[5px]">
+      <select className="ml-auto px-3 py-2 border border-gray-400 rounded-[10px]">
         <option>Sort by: Choose</option>
         <option>Price: Low to High</option>
         <option>Price: High to Low</option>
