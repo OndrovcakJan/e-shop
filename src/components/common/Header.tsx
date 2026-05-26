@@ -25,33 +25,38 @@ export default function Header({ category }: Props) {
   }
   return (
     <>
-      <div className="hidden md:flex mt-1 mx-1">
-        <Link to="/" className="text-primary font-extrabold">
-          VON
-        </Link>
-        <div className="mx-auto flex gap-1.5">
-          <Link to="/" className={getClass("all")}>
-            Shop all
+      <div className="flex flex-col gap-2">
+        <div className="hidden md:flex md:pt-2 md:mx-1">
+          <Link to="/" className="text-primary font-extrabold">
+            VON
           </Link>
-          <Link to="/men" className={getClass("men")}>
-            Men
-          </Link>
-          <Link to="/women" className={getClass("women")}>
-            Women
-          </Link>
-          <Link to="/jewlery" className={getClass("jewelry")}>
-            Jewelry
-          </Link>
-          <Link to="/electronics" className={getClass("electronics")}>
-            Electronics
-          </Link>
+          <div className="mx-auto flex gap-1.5">
+            <Link to="/" className={getClass("all")}>
+              Shop all
+            </Link>
+            <Link to="/men" className={getClass("men")}>
+              Men
+            </Link>
+            <Link to="/women" className={getClass("women")}>
+              Women
+            </Link>
+            <Link to="/electronics" className={getClass("electronics")}>
+              Electronics
+            </Link>
+            <Link to="/jewelry" className={getClass("jewelry")}>
+              Jewelry
+            </Link>
+          </div>
+          <SearchBar />
+          <ShoppingCart className="ml-3" />
         </div>
-        <SearchBar />
-        <ShoppingCart className="ml-3"/>
+        <span className="w-full h-px bg-gray-200"></span>
       </div>
 
-      <div className="flex md:hidden mt-1 mx-1">
-        <Link to="/" className="mr-auto font-extrabold text-primary">VON</Link>
+      <div className="flex md:hidden pt-2 mx-1">
+        <Link to="/" className="mr-auto font-extrabold text-primary">
+          VON
+        </Link>
         <Hamburger />
       </div>
     </>
