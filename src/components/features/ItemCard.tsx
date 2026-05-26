@@ -26,13 +26,22 @@ export default function ItemCard({
   function handleClick() {
     navigate(`/product/${id}`);
   }
+
+  let desc: string;
+
+  if (description.length > 75) {
+    desc = `${description.substring(0, 75)}...`;
+  } else {
+    desc = description;
+  }
+
   return (
     <div
-      className="flex flex-col w-100 bg-white rounded-2xl p-7 hover:scale-105 transition-transform duration-300 hover:cursor-pointer"
+      className="flex flex-col w-80 bg-white rounded-2xl p-7 hover:scale-105 transition-transform duration-300 hover:cursor-pointer"
       onClick={handleClick}
     >
       <div className="flex bg-secondary p-2 rounded-2xl justify-center items-center">
-        <img src={image} alt="Product image" className="w-50 h-50" />
+        <img src={image} alt="Product image" className="w-50 h-50 object-scale-down " />
       </div>
       <Rating
         initialValue={rating.rate}
@@ -41,9 +50,9 @@ export default function ItemCard({
         allowFraction
         size={20}
       />
-      <h2 className="text-3xl font-bold">{title}</h2>
-      <p>{description}</p>
-      <p className="text-primary font-bold text-2xl">${price}</p>
+      <h2 className="text-1xl font-bold">{title}</h2>
+      <p>{desc}</p>
+      <p className="font-bold text-1xl">${price}</p>
     </div>
   );
 }

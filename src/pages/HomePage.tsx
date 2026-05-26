@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { getProducts, type Product } from "../services/apiService";
 import { AxiosError } from "axios";
 import ItemCard from "../components/features/ItemCard";
-import { Rating } from "react-simple-star-rating";
 
 export default function HomePage() {
   const params = useParams();
@@ -68,7 +67,7 @@ export default function HomePage() {
 
           <div ref={target}>
             <Options category={category} />
-            <div className="flex flex-wrap gap-3.5 justify-center">
+            <div className="flex flex-wrap gap-3.5 justify-center mt-5">
               {loading ? (
                 <div>Loading products...</div>
               ) : (
