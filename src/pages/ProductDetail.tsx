@@ -71,7 +71,7 @@ const ProductDetail = () => {
         <div className="grid grid-cols-[55%_45%]  gap-10">
           {/* levý sloupec */}
 
-          <div className="relative rounded-2xl bg-gray-100 p-10 flex items-center justify-center overflow-hidden ml-8 w-110">
+          <div className="relative rounded-2xl bg-gray-100 p-10 flex items-center justify-center overflow-hidden ml-8 w-105">
             <img
               src={product.image}
               alt={product.title}
