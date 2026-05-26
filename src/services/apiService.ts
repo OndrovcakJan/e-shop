@@ -27,3 +27,6 @@ export type Product = {
 export const getProducts = () => apiFetch<Product[]>("/products");
 
 export const getProduct = (id: number) => apiFetch<Product>(`/products/${id}`);
+
+export const getProductsByCategory = (category: string) =>
+  apiFetch<Product[]>(`/products/category/${encodeURIComponent(category)}`);
