@@ -93,9 +93,31 @@ const ProductDetail = () => {
               Free shipping on orders over $1'000'000.
             </p>
 
-            <p className="text-gray-700 mt-6 max-w-2xl ">
-              {description}
-            </p>
+            <p className="text-gray-700 mt-6 max-w-2xl ">{description}</p>
+            <div className="flex items-center gap-3 mt-4">
+              {/* quantity counter */}
+              {/* TODO: udělat counter jako samostatný komponent */}
+              <div className="flex items-center border border-gray-300 rounded-lg">
+                <button
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  className="px-3 py-2 hover:bg-gray-100 rounded-l-lg"
+                >
+                  -
+                </button>
+                <span className="px-4 py-2 border-gray-300 text-sm">
+                  {quantity}
+                </span>
+                <button
+                  onClick={() => setQuantity((q) => q + 1)}
+                  className="px-3 py-2  hover:bg-gray-100 rounded-r-lg"
+                >
+                  +
+                </button>
+              </div>
+              <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg">
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
