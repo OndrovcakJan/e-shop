@@ -1,4 +1,4 @@
-//import Header from "../components/common/Header";
+import Header from "../components/common/Header";
 import { getProduct, type Product } from "../services/apiService";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
@@ -34,7 +34,24 @@ const ProductDetail = () => {
   if (error) return <div>halo, Error: {error}</div>;
   if (!product) return <div>Product not found</div>;
 
-  return <div>ProductDetail Page</div>;
+  return (
+    <div>
+      <Header />
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        {/* breadcrumb */}
+        <div className=""></div>
+
+        {/* main grid */}
+        <div className="">
+          {/* levý sloupec */}
+          <div>...</div>
+
+          {/* pravý sloupec */}
+          <div className=""></div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ProductDetail;
