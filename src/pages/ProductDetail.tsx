@@ -1,6 +1,6 @@
 import Header from "../components/common/Header";
 import { getProduct, type Product } from "../services/apiService";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
 
@@ -37,9 +37,19 @@ const ProductDetail = () => {
   return (
     <div>
       <Header />
-      <div className="max-w-6xl mx-auto px-6 py-8">
+      <div className="max-w-6xl mx-auto px-6 py-8 mt-15 ml-8">
         {/* breadcrumb */}
-        <div className=""></div>
+        <div className="mb-6 flex items-center gap-2 text-sm text-gray-600" >
+          <Link to="/" className="hover:text-black">
+            Home
+          </Link>
+          <span>-</span>
+          <Link to={`/category/${product.category}`} className="capitalize hover:text-black">
+            {product.category}
+          </Link>
+          <span>-</span>
+          <span className="text-black">{product.title}</span>
+        </div>
 
         {/* main grid */}
         <div className="">
