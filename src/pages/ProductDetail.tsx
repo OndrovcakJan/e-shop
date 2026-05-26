@@ -3,6 +3,7 @@ import { getProduct, type Product } from "../services/apiService";
 import { Link, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
+import QuantityCounter from "../components/common/QuantityCounter";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -10,6 +11,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +37,7 @@ const ProductDetail = () => {
   if (error) return <div>halo, Error: {error}</div>;
   if (!product) return <div>Product not found</div>;
 
-  const first = `${product.description.charAt(0).toUpperCase()}${product.description.slice(1)}`;
+  const description = `${product.description.charAt(0).toUpperCase()}${product.description.slice(1)}`;
   return (
     <div>
       <Header />
@@ -75,12 +77,36 @@ const ProductDetail = () => {
               {product.category}
             </span>
             <h1 className="text-4xl font-bold capitalize">{product.title}</h1>
+            <div className="flex items-center gap-2">
+              <div className="flex text-amber-700 text-lg">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span key={star}>
+                    {star <= Math.round(product.rating.rate) ? "★" : "☆"}
+                  </span>
+                ))}
+              </div>
+              <span className="text-sm text-gray-600">
+                {product.rating.count} Reviews
+              </span>
+            </div>
             <p className="text-3xl font-bold">${product.price}</p>
             <p className="text-sm text-gray-500">
               Free shipping on orders over $1'000'000.
             </p>
 
-            <p className="text-gray-700 mt-6 max-w-2xl leading-relaxed"> {first}</p>
+            <p className="text-gray-700 mt-6 max-w-2xl ">{description}</p>
+            <div className="flex items-center gap-3 mt-4">
+              {/* quantity counter */}
+              <QuantityCounter
+                quantity={quantity}
+                onIncrease={() => setQuantity((q) => q + 1)}
+                onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
+              />
+              {/* add to cart button */}
+              <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg">
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
