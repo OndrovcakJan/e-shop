@@ -8,6 +8,7 @@ import { Link, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
 import QuantityCounter from "../components/common/QuantityCounter";
+import { Rating } from "react-simple-star-rating";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -87,13 +88,13 @@ const ProductDetail = () => {
             </span>
             <h1 className="text-4xl font-bold capitalize">{product.title}</h1>
             <div className="flex items-center gap-2">
-              <div className="flex text-amber-700 text-lg">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star}>
-                    {star <= Math.round(product.rating.rate) ? "★" : "☆"}
-                  </span>
-                ))}
-              </div>
+              <Rating
+                      initialValue={product.rating.rate}
+                      SVGstyle={{ display: "inline" }}
+                      readonly
+                      allowFraction
+                      size={20}
+                    />
               <span className="text-sm text-gray-600">
                 {product.rating.count} Reviews
               </span>
