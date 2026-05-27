@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { getProducts, type Product } from "../services/apiService";
 import { AxiosError } from "axios";
 import ItemCard from "../components/features/ItemCard";
+import Cart from "../components/common/Cart";
 
 export default function HomePage() {
   const params = useParams();
@@ -41,44 +42,46 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="h-screen overflow-auto bg-background scroll-smooth">
-      <Header category={category} />
-      <div className="flex justify-center">
-        <div className="w-[96%]">
-          <div className="flex grow items-center justify-center w-full h-125 mt-5">
-            <div className="bg-secondary w-full h-full flex justify-center items-center rounded-2xl">
-              <div className="flex flex-col items-center justify-center bg-background min-w-2/5 h-50 rounded-2xl">
-                <h1 className="text-3xl font-extrabold">
-                  Modern essentials for You
-                </h1>
-                <p className="text-center px-15">
-                  Curated collections designed to elevate your everyday living.
-                  Discover quality and craftsmanship.
-                </p>
-                <button
-                  onClick={scrollTo}
-                  className="bg-primary mt-4 px-6 py-3 rounded-[15px] text-background font-bold hover:scale-105 transition-transform duration-300"
-                >
-                  Explore collection
-                </button>
+    <Cart>
+      <div className="h-screen overflow-auto bg-background scroll-smooth">
+        <Header category={category} />
+        <div className="flex justify-center">
+          <div className="w-[96%]">
+            <div className="flex grow items-center justify-center w-full h-125 mt-5">
+              <div className="bg-secondary w-full h-full flex justify-center items-center rounded-2xl">
+                <div className="flex flex-col items-center justify-center bg-background min-w-2/5 h-50 rounded-2xl">
+                  <h1 className="text-3xl font-extrabold">
+                    Modern essentials for You
+                  </h1>
+                  <p className="text-center px-15">
+                    Curated collections designed to elevate your everyday
+                    living. Discover quality and craftsmanship.
+                  </p>
+                  <button
+                    onClick={scrollTo}
+                    className="bg-primary mt-4 px-6 py-3 rounded-[15px] text-background font-bold hover:scale-105 transition-transform duration-300"
+                  >
+                    Explore collection
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div ref={target}>
-            <Options category={category} />
-            <div className="flex flex-wrap gap-3.5 justify-center mt-5">
-              {loading ? (
-                <div>Loading products...</div>
-              ) : (
-                data?.map((product) => {
-                  return <ItemCard {...product} />;
-                })
-              )}
+            <div ref={target}>
+              <Options category={category} />
+              <div className="flex flex-wrap gap-3.5 justify-center mt-5">
+                {loading ? (
+                  <div>Loading products...</div>
+                ) : (
+                  data?.map((product) => {
+                    return <ItemCard {...product} />;
+                  })
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Cart>
   );
 }

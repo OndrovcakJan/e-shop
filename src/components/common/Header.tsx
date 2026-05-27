@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ShoppingCart } from "lucide-react";
 import SearchBar from "../features/SearchBar";
 import Hamburger from "../features/Hamburger";
+import { useCart } from "../../context/CartContext";
 
 const validCategory = ["all", "men", "women", "jewelry", "electronics"];
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export default function Header({ category }: Props) {
+  const { isOpen, setIsOpen } = useCart();
   let cat: string;
   if (category && validCategory.includes(category)) {
     cat = category;
@@ -23,9 +25,13 @@ export default function Header({ category }: Props) {
       return "";
     }
   }
+
+  function handleCart() {
+    setIsOpen(!isOpen);
+  }
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-full h-10.75 bg-background">
         <div className="hidden md:flex md:pt-2 md:mx-1">
           <Link to="/" className="text-primary font-extrabold">
             VON
@@ -48,7 +54,7 @@ export default function Header({ category }: Props) {
             </Link>
           </div>
           <SearchBar />
-          <ShoppingCart className="ml-3" />
+          <ShoppingCart onClick={handleCart} className="ml-3 hover:cursor-pointer" />
         </div>
         <span className="w-full h-px bg-gray-200"></span>
       </div>
