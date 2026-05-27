@@ -11,8 +11,7 @@ import QuantityCounter from "../components/common/QuantityCounter";
 import { Rating } from "react-simple-star-rating";
 import RelatedList from "../components/features/RelatedList";
 import Cart from "../components/common/Cart";
-import { Truck, SquareChevronLeft  } from "lucide-react";
-
+import { Truck, SquareChevronLeft } from "lucide-react";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -126,23 +125,26 @@ const ProductDetail = () => {
                 {/* info card pod add to cart btn */}
 
                 <div className="flex items-center justify-around bg-indigo-50 rounded-xl px-6 py-4 mt-2">
-                  <div className="flex items-center gap-2 text-indigo-700">
+                  <div className="flex items-center gap-2 text-indigo-600">
                     <Truck />
                     <span className="text-sm font-medium">
                       Free Express Shipping
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-indigo-700">
+                  <div className="flex items-center gap-2 text-indigo-600">
                     <SquareChevronLeft />
-                    <span className="text-sm font-medium">30-Day Returns</span>
+                    <span className="text-sm font-medium">
+                      30-Day Returns
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div><div className="max-w-7xl mx-auto px-6">
-  <hr className="border-t border-gray-200 mt-9" />
-</div>
+        </div>
+        <div className="max-w-7xl mx-auto px-6">
+          <hr className="border-t border-gray-200 mt-9" />
+        </div>
         <RelatedList products={related} />
 
         {lightboxOpen && (
