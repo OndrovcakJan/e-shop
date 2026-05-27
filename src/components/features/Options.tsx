@@ -23,7 +23,7 @@ export default function Options({category}: Props) {
 
   return (
     <div className="flex items-center mt-3">
-      <div className="flex gap-3">
+      <div className="flex flex-wrap gap-3">
         {validCategory.map((category) => {
           const capitalized = `${category.charAt(0).toUpperCase()}${category.slice(1)}`;
           return <Link to={`/${category}`} className={clsx("rounded-2xl px-3 border border-gray-400 transition-colors duration-300", getClass(category))}>{capitalized}</Link>
