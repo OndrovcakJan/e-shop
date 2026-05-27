@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
 import QuantityCounter from "../components/common/QuantityCounter";
 import { Rating } from "react-simple-star-rating";
+import RelatedList from "../components/features/RelatedList";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -89,12 +90,12 @@ const ProductDetail = () => {
             <h1 className="text-4xl font-bold capitalize">{product.title}</h1>
             <div className="flex items-center gap-2">
               <Rating
-                      initialValue={product.rating.rate}
-                      SVGstyle={{ display: "inline" }}
-                      readonly
-                      allowFraction
-                      size={20}
-                    />
+                initialValue={product.rating.rate}
+                SVGstyle={{ display: "inline" }}
+                readonly
+                allowFraction
+                size={20}
+              />
               <span className="text-sm text-gray-600">
                 {product.rating.count} Reviews
               </span>
@@ -105,22 +106,27 @@ const ProductDetail = () => {
             </p>
 
             <p className="text-gray-700 mt-6 max-w-2xl ">{description}</p>
-            <div className="flex items-center gap-3 mt-4">
-              {/* quantity counter */}
-              <QuantityCounter
-                quantity={quantity}
-                onIncrease={() => setQuantity((q) => q + 1)}
-                onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
-              />
-              {/* add to cart button */}
-              <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer">
-                Add to Cart
-              </button>
+            <div className="flex flex-col gap-3 mt-4">
+              <div className="flex items-center gap-3">
+                {/* quantity counter */}
+                <QuantityCounter
+                  quantity={quantity}
+                  onIncrease={() => setQuantity((q) => q + 1)}
+                  onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
+                />
+                {/* add to cart button */}
+                <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer">
+                  Add to Cart
+                </button>
+              </div>
+              {/* info card pod add to cart btn */}
             </div>
           </div>
         </div>
       </div>
-      {/* TODO: render related products */}
+      <hr className="border-t border-gray-100 mt-19" />
+      <RelatedList products={related} />
+
       {lightboxOpen && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
