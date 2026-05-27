@@ -106,22 +106,25 @@ const ProductDetail = () => {
             </p>
 
             <p className="text-gray-700 mt-6 max-w-2xl ">{description}</p>
-            <div className="flex items-center gap-3 mt-4">
-              {/* quantity counter */}
-              <QuantityCounter
-                quantity={quantity}
-                onIncrease={() => setQuantity((q) => q + 1)}
-                onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
-              />
-              {/* add to cart button */}
-              <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer">
-                Add to Cart
-              </button>
+            <div className="flex flex-col gap-3 mt-4">
+              <div className="flex items-center gap-3">
+                {/* quantity counter */}
+                <QuantityCounter
+                  quantity={quantity}
+                  onIncrease={() => setQuantity((q) => q + 1)}
+                  onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
+                />
+                {/* add to cart button */}
+                <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer">
+                  Add to Cart
+                </button>
+              </div>
+              {/* info card pod add to cart btn */}
             </div>
           </div>
         </div>
       </div>
-      {/* TODO: render related products */}
+      <hr className="border-t border-gray-100 mt-19" />
       <RelatedList products={related} />
 
       {lightboxOpen && (
