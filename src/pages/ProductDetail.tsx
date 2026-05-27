@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
 import QuantityCounter from "../components/common/QuantityCounter";
 import { Rating } from "react-simple-star-rating";
+import RelatedList from "../components/features/RelatedList";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -89,12 +90,12 @@ const ProductDetail = () => {
             <h1 className="text-4xl font-bold capitalize">{product.title}</h1>
             <div className="flex items-center gap-2">
               <Rating
-                      initialValue={product.rating.rate}
-                      SVGstyle={{ display: "inline" }}
-                      readonly
-                      allowFraction
-                      size={20}
-                    />
+                initialValue={product.rating.rate}
+                SVGstyle={{ display: "inline" }}
+                readonly
+                allowFraction
+                size={20}
+              />
               <span className="text-sm text-gray-600">
                 {product.rating.count} Reviews
               </span>
@@ -121,10 +122,8 @@ const ProductDetail = () => {
         </div>
       </div>
       {/* TODO: render related products */}
+      <RelatedList products={related} />
 
-
-
-      
       {lightboxOpen && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
