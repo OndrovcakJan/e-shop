@@ -1,6 +1,37 @@
-import { Mail, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Cart from "../components/common/Cart";
 import Header from "../components/common/Header";
+import { useState } from "react";
+
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
+const [error, setError] = useState<Record<string, string>>({});
+const [submitted, setSubmitted] = useState(false);
+
+const validate = () => {
+  const newErrors: Record<string, string> = {};
+
+  if (!form.name.trim()) newErrors.name = "Name is required";
+  if (!form.email.trim()) newErrors.email = "Email is required";
+  if (!form.email.includes("@")) newErrors.email = "Email is invalid";
+  if (!form.subject.trim()) newErrors.subject = "Subject is required";
+  if (!form.message.trim()) newErrors.message = "Message is required";
+
+  return newErrors;
+};
+
+const handleSubmit = () => {
+  const newErrors = validate();
+  if (Object.keys(newErrors).length > 0) {
+    setError(newErrors);
+    return;
+  }
+  setSubmitted(true);
+};
 
 const Contact = () => {
   return (
@@ -38,6 +69,24 @@ const Contact = () => {
             <p className="text-indigo-600 text-sm font-medium">
               +420 123 456 789
             </p>
+          </div>
+
+          <div className="border border-gray-200 rounded-xl p-8 flex flex-col items-center gap-3 text-center">
+            <span className="text-3xl text-indigo-600">
+              <MapPin />
+            </span>
+            <h3 className="font-bold text-lg">Address</h3>
+            <p className="text-sm text-gray-500">Visit us at our office</p>
+            <span className="text-indigo-800 text-sm font-semibold">
+              Pařížská 1, 110 00 Praha 1
+            </span>
+          </div>
+        </div>
+        {/* contact formulář */}
+        <div className="grid grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
+          <div className="border border-gray-200 rounded-xl p-8 flex flex-col gap-5">
+            <h2 className="text-2xl font-bold">Send us a message</h2>
+            
           </div>
         </div>
       </div>
