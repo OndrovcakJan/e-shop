@@ -16,7 +16,7 @@ export function getCart(): CartObject[] | null {
 export function addProduct(product: CartObject) {
   const cartData = localStorage.getItem("cart");
   if (!cartData) {
-    const json = JSON.stringify(product);
+    const json = JSON.stringify([product]);
     localStorage.setItem("cart", json);
     return;
   }

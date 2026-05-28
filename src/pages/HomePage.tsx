@@ -45,7 +45,7 @@ export default function HomePage() {
     <Cart>
       <div className="h-screen overflow-auto bg-background scroll-smooth">
         <Header category={category} />
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-10">
           <div className="w-[96%]">
             <div className="flex grow items-center justify-center w-full h-125 mt-5">
               <div className="bg-secondary w-full h-full flex justify-center items-center rounded-2xl">
