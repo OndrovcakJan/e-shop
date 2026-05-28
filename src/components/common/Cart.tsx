@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import clsx from "clsx";
 import { ArrowRight, X } from "lucide-react";
@@ -10,12 +10,12 @@ export default function Cart({ children }: { children: React.ReactNode }) {
   const [cart, setCart] = useState<CartObject[] | null>(() => getCart());
 
   useEffect(() => {
-    const handleCartUpdated = () => {
+    const loadCart = () => {
       setCart(getCart());
-    };
-    window.addEventListener("cartUpdated", handleCartUpdated);
-    return () => window.removeEventListener("cartUpdated", handleCartUpdated);
-  }, []);
+    }
+    window.addEventListener("cartUpdated", loadCart);
+    return () => window.removeEventListener("cartUpdated", loadCart);
+  });
 
   let totalPrice = cart?.reduce((sum, val) => sum + val.price * val.amount, 0);
   const roundedPrice = totalPrice?.toFixed(2);
@@ -57,14 +57,17 @@ export default function Cart({ children }: { children: React.ReactNode }) {
             })}
           </div>
 
-          <div className="mt-auto mb-3 w-[90%]">
+          <div className="mt-auto pt-5 mb-3 w-[90%]">
+            <span className="block w-full h-px bg-gray-200 mb-3"></span>
             <div className="flex w-full">
               <p>Subtotal</p>
-              {}
+              <p className="ml-auto">${totalPrice}</p>
             </div>
-            <div className="flex w-full">
+            <div className="flex w-full mt-2">
               <p>Shipping</p>
+              <p className="ml-auto">Free</p>
             </div>
+            <span className="block w-full h-px bg-gray-200 mt-5"></span>
             <div className="flex w-full mt-5 mb-3">
               <h2 className="font-bold text-xl">Total</h2>
               <h2 className="ml-auto font-bold text-xl">${totalPrice}</h2>
