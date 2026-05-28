@@ -31,7 +31,7 @@ export default function HomePage() {
   );
 
   filtered = filtered?.filter((p: Product) => {
-    let vCategory = "";
+    let vCategory: string;
     switch (p.category) {
       case "men's clothing":
         vCategory = "men";
