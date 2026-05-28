@@ -79,7 +79,6 @@ const ProductDetail = () => {
             <span className="text-black">{product.title}</span>
           </div>
 
-          {/* main grid */}
           <div className="grid grid-cols-[55%_45%]  gap-10">
             {/* levý sloupec */}
 
@@ -118,7 +117,6 @@ const ProductDetail = () => {
               <p className="text-gray-700 mt-6 max-w-2xl ">{description}</p>
               <div className="flex flex-col gap-3 mt-4">
                 <div className="flex items-center gap-3">
-                  {/* quantity counter */}
                   <QuantityCounter
                     quantity={quantity}
                     onIncrease={() => setQuantity((q) => q + 1)}
@@ -132,7 +130,6 @@ const ProductDetail = () => {
                     Add to Cart
                   </button>
                 </div>
-                {/* info card pod add to cart btn */}
 
                 <div className="flex items-center justify-around bg-indigo-50 rounded-xl px-6 py-4 mt-2">
                   <div className="flex items-center gap-2 text-indigo-600">
