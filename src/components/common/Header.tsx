@@ -34,7 +34,7 @@ export default function Header({ category, search, onSearchChange }: Props) {
 
   return (
     <>
-      <div className="flex flex-col gap-2 w-full h-12.25 bg-background fixed top-0">
+      <div className="flex flex-col gap-2 w-full h-12.25 bg-background fixed top-0 z-50">
         <div className="hidden md:flex md:pt-2 md:mx-1">
           <Link to="/" className="text-primary font-extrabold text-2xl">
             VON
