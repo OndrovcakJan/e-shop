@@ -4,8 +4,9 @@ import { Link } from "react-router";
 const validCategory = ["all", "men", "women", "electronics", "jewelry"];
 interface Props {
   category?: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
-export default function Options({category}: Props) {
+export default function Options({category, onChange}: Props) {
   let cat: string;
   if (category && validCategory.includes(category)) {
     cat = category;
@@ -30,11 +31,11 @@ export default function Options({category}: Props) {
         })}
       </div>
 
-      <select className="ml-auto px-3 py-2 border border-gray-400 rounded-[10px]">
-        <option>Sort by: Choose</option>
-        <option>Price: Low to High</option>
-        <option>Price: High to Low</option>
-        <option>Top Rated</option>
+      <select className="ml-auto px-3 py-2 border border-gray-400 rounded-[10px]" onChange={onChange}>
+        <option value="" disabled selected>Sort by: Choose</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="top">Top Rated</option>
       </select>
     </div>
   );
