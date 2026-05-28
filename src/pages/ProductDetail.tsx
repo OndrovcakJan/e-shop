@@ -12,6 +12,7 @@ import { Rating } from "react-simple-star-rating";
 import RelatedList from "../components/features/RelatedList";
 import Cart from "../components/common/Cart";
 import { Truck, SquareChevronLeft } from "lucide-react";
+import Footer from "../components/common/Footer";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -154,6 +155,7 @@ const ProductDetail = () => {
           </div>
         )}
       </div>
+      <Footer />
     </Cart>
   );
 };
