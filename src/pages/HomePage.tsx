@@ -24,6 +24,7 @@ export default function HomePage() {
   const [data, setData] = useState<Product[]>();
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("");
 
   const filtered = data?.filter((p) =>
     p.title.toLowerCase().includes(search.toLowerCase()),
@@ -81,6 +82,11 @@ export default function HomePage() {
     fetchData();
   }, []);
 
+  function handleSort(e: React.ChangeEvent<HTMLSelectElement>) {
+    console.log(e.target.value);
+    setSort(e.target.value);
+  }
+
   return (
     <Cart>
       <div className="h-screen overflow-auto bg-background scroll-smooth">
@@ -112,7 +118,7 @@ export default function HomePage() {
             </div>
 
             <div ref={target}>
-              <Options category={category} />
+              <Options category={category} onChange={handleSort} />
               <div className="flex flex-wrap gap-3.5 justify-center mt-5">
                 {loading ? (
                   <div>Loading products...</div>
