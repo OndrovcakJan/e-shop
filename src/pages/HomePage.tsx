@@ -24,10 +24,48 @@ export default function HomePage() {
   const [data, setData] = useState<Product[]>();
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("");
 
-  const filtered = data?.filter((p) =>
+  let filtered = data?.filter((p) =>
     p.title.toLowerCase().includes(search.toLowerCase()),
   );
+
+  filtered = filtered?.filter((p: Product) => {
+    let vCategory: string;
+    switch (p.category) {
+      case "men's clothing":
+        vCategory = "men";
+        break;
+      case "women's clothing":
+        vCategory = "women";
+        break;
+      case "electronics":
+        vCategory = "electronics";
+        break;
+      case "jewelery":
+        vCategory = "jewelry";
+        break;
+      default:
+        vCategory = "all";
+        break;
+    }
+
+    if (vCategory === category || category === "all") {
+      return p;
+    }
+  });
+
+  switch (sort) {
+    case "low":
+      filtered?.sort((a: Product, b: Product) => a.price - b.price);
+      break;
+    case "high":
+      filtered?.sort((a: Product, b: Product) => b.price - a.price);
+      break;
+    case "top":
+      filtered?.sort((a: Product, b: Product) => b.rating.rate - a.rating.rate);
+      break;
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +84,11 @@ export default function HomePage() {
     };
     fetchData();
   }, []);
+
+  function handleSort(e: React.ChangeEvent<HTMLSelectElement>) {
+    console.log(e.target.value);
+    setSort(e.target.value);
+  }
 
   return (
     <Cart>
@@ -78,7 +121,7 @@ export default function HomePage() {
             </div>
 
             <div ref={target}>
-              <Options category={category} />
+              <Options category={category} onChange={handleSort} />
               <div className="flex flex-wrap gap-3.5 justify-center mt-5">
                 {loading ? (
                   <div>Loading products...</div>
