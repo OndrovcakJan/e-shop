@@ -3,37 +3,36 @@ import Cart from "../components/common/Cart";
 import Header from "../components/common/Header";
 import { useState } from "react";
 
-const [form, setForm] = useState({
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-});
-const [error, setError] = useState<Record<string, string>>({});
-const [submitted, setSubmitted] = useState(false);
-
-const validate = () => {
-  const newErrors: Record<string, string> = {};
-
-  if (!form.name.trim()) newErrors.name = "Name is required";
-  if (!form.email.trim()) newErrors.email = "Email is required";
-  if (!form.email.includes("@")) newErrors.email = "Email is invalid";
-  if (!form.subject.trim()) newErrors.subject = "Subject is required";
-  if (!form.message.trim()) newErrors.message = "Message is required";
-
-  return newErrors;
-};
-
-const handleSubmit = () => {
-  const newErrors = validate();
-  if (Object.keys(newErrors).length > 0) {
-    setError(newErrors);
-    return;
-  }
-  setSubmitted(true);
-};
-
 const Contact = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [error, setError] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!form.name.trim()) newErrors.name = "Name is required";
+    if (!form.email.trim()) newErrors.email = "Email is required";
+    if (!form.email.includes("@")) newErrors.email = "Email is invalid";
+    if (!form.subject.trim()) newErrors.subject = "Subject is required";
+    if (!form.message.trim()) newErrors.message = "Message is required";
+
+    return newErrors;
+  };
+
+  const handleSubmit = () => {
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setError(newErrors);
+      return;
+    }
+    setSubmitted(true);
+  };
   return (
     <Cart>
       <Header />
@@ -83,10 +82,91 @@ const Contact = () => {
           </div>
         </div>
         {/* contact formulář */}
-        <div className="grid grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
+        <div className="grid grid-cols-2 gap-8 max-w-5xl mx-auto mt-16 mb-20">
           <div className="border border-gray-200 rounded-xl p-8 flex flex-col gap-5">
             <h2 className="text-2xl font-bold">Send us a message</h2>
-            
+
+            {submitted ? (
+              <p className="text-green-600 font-medium">
+                Message sent successfully!
+              </p>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-gray-600">Name</label>
+                    <input
+                      value={form.name}
+                      onChange={(e) =>
+                        setForm({ ...form, name: e.target.value })
+                      }
+                      placeholder="Your name"
+                      className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
+                    />
+                    {error.name && (
+                      <span className="text-red-500 text-xs">{error.name}</span>
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-gray-600">Email</label>
+                    <input
+                      value={form.email}
+                      onChange={(e) =>
+                        setForm({ ...form, email: e.target.value })
+                      }
+                      placeholder="Your email"
+                      className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
+                    />
+                    {error.email && (
+                      <span className="text-red-500 text-xs">
+                        {error.email}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm text-gray-600">Předmět</label>
+                  <input
+                    value={form.subject}
+                    onChange={(e) =>
+                      setForm({ ...form, subject: e.target.value })
+                    }
+                    placeholder="How can we help you?"
+                    className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
+                  />
+                  {error.subject && (
+                    <span className="text-red-500 text-xs">
+                      {error.subject}
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm text-gray-600">Message</label>
+                  <textarea
+                    value={form.message}
+                    onChange={(e) =>
+                      setForm({ ...form, message: e.target.value })
+                    }
+                    placeholder="Your message"
+                    rows={6}
+                    className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400 resize-none"
+                  />
+                  {error.message && (
+                    <span className="text-red-500 text-xs">
+                      {error.message}
+                    </span>
+                  )}
+                </div>
+                <button
+                  onClick={handleSubmit}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold transition duration-200 w-fit cursor-pointer "
+                >
+                  Send Message
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
