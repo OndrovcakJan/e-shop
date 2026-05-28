@@ -82,7 +82,7 @@ const Contact = () => {
           </div>
         </div>
         {/* contact formulář */}
-        <div className="grid grid-cols-2 gap-8 max-w-7xl mx-auto mt-16 mb-20 px-9">
+        <div className="grid grid-cols-2 gap-8 max-w-7xl mx-auto mt-16 mb-20 px-9 items-start">
           <div className="border border-gray-200 rounded-xl p-8 flex flex-col gap-5">
             <h2 className="text-2xl font-bold">Send us a message</h2>
 
@@ -169,11 +169,11 @@ const Contact = () => {
             )}
           </div>
 
-          <div className="rounded-xl overflow-hidden">
+          <div className="rounded-xl overflow-hidden h-[500px]">
             <iframe
               title="Our Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2559.8781575375!2d14.421371!3d50.090851!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b94f0c6f6e5c5%3A0x1!2sPa%C5%99%C3%AD%C5%BEsk%C3%A1%201%2C%20110%2000%20Praha%201!5e0!3m2!1scs!2scz!4v1234567890"
-              className="w-full h-full min-h-[500px"
+              className="w-full h-full"
               loading="lazy"
             />
           </div>
