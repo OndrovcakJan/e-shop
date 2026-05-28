@@ -23,6 +23,11 @@ export default function HomePage() {
 
   const [data, setData] = useState<Product[]>();
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+
+  const filtered = data?.filter((p) =>
+    p.title.toLowerCase().includes(search.toLowerCase()),
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +50,11 @@ export default function HomePage() {
   return (
     <Cart>
       <div className="h-screen overflow-auto bg-background scroll-smooth">
-        <Header category={category} />
+        <Header
+          category={category}
+          search={search}
+          onSearchChange={setSearch}
+        />{" "}
         <div className="flex justify-center mt-10">
           <div className="w-[96%]">
             <div className="flex grow items-center justify-center w-full h-125 mt-5">
@@ -74,7 +83,7 @@ export default function HomePage() {
                 {loading ? (
                   <div>Loading products...</div>
                 ) : (
-                  data?.map((product) => {
+                  filtered?.map((product) => {
                     return <ItemCard {...product} />;
                   })
                 )}

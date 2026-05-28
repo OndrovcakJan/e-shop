@@ -7,9 +7,11 @@ import { useCart } from "../../context/CartContext";
 const validCategory = ["all", "men", "women", "jewelry", "electronics"];
 interface Props {
   category?: string;
+  search?: string;
+  onSearchChange?: (value: string) => void;
 }
 
-export default function Header({ category }: Props) {
+export default function Header({ category, search, onSearchChange }: Props) {
   const { isOpen, setIsOpen } = useCart();
   let cat: string;
   if (category && validCategory.includes(category)) {
@@ -29,6 +31,7 @@ export default function Header({ category }: Props) {
   function handleCart() {
     setIsOpen(!isOpen);
   }
+
   return (
     <>
       <div className="flex flex-col gap-2 w-full h-12.25 bg-background fixed top-0">
@@ -53,8 +56,14 @@ export default function Header({ category }: Props) {
               Jewelry
             </Link>
           </div>
-          <SearchBar />
-          <ShoppingCart onClick={handleCart} className="ml-3 hover:cursor-pointer" />
+          <SearchBar
+            value={search ?? ""}
+            onChange={onSearchChange ?? (() => {})}
+          />{" "}
+          <ShoppingCart
+            onClick={handleCart}
+            className="ml-3 hover:cursor-pointer"
+          />
         </div>
         <span className="w-full h-px bg-gray-200"></span>
       </div>
