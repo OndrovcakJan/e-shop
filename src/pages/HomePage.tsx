@@ -6,6 +6,7 @@ import { getProducts, type Product } from "../services/apiService";
 import { AxiosError } from "axios";
 import ItemCard from "../components/features/ItemCard";
 import Cart from "../components/common/Cart";
+import Footer from "../components/common/Footer";
 
 export default function HomePage() {
   const params = useParams();
@@ -81,6 +82,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </Cart>
   );
