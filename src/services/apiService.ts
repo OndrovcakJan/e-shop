@@ -11,7 +11,7 @@ async function apiFetch<T>(
   return response.data;
 }
 
-export type Product = {
+export interface Product {
   id: number;
   title: string;
   price: number;

@@ -12,6 +12,7 @@ import { Rating } from "react-simple-star-rating";
 import RelatedList from "../components/features/RelatedList";
 import Cart from "../components/common/Cart";
 import { Truck, SquareChevronLeft } from "lucide-react";
+import { addProduct, type CartObject } from "../services/Cart";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -44,13 +45,19 @@ const ProductDetail = () => {
     fetchData();
   }, [id]);
 
-  console.log("ProductDetail", { id, product });
-
   if (loading) return <div>loading...</div>;
   if (error) return <div>halo, Error: {error}</div>;
   if (!product) return <div>Product not found</div>;
 
   const description = `${product.description.charAt(0).toUpperCase()}${product.description.slice(1)}`;
+
+  function handleCart() {
+    const item: CartObject = { ...product!, amount: quantity };
+    const event = new Event("cartUpdated");
+    window.dispatchEvent(event);
+    addProduct(item);
+  }
+
   return (
     <Cart>
       <div>
@@ -115,7 +122,11 @@ const ProductDetail = () => {
                     onIncrease={() => setQuantity((q) => q + 1)}
                     onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
                   />
-                  <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer">
+                  {/* add to cart button */}
+                  <button
+                    onClick={handleCart}
+                    className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer"
+                  >
                     Add to Cart
                   </button>
                 </div>
