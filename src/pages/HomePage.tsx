@@ -26,11 +26,11 @@ export default function HomePage() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
 
-  const filtered = data?.filter((p) =>
+  let filtered = data?.filter((p) =>
     p.title.toLowerCase().includes(search.toLowerCase()),
   );
 
-  filtered?.filter((p: Product) => {
+  filtered = filtered?.filter((p: Product) => {
     let vCategory = "";
     switch (p.category) {
       case "men's clothing":
@@ -45,9 +45,12 @@ export default function HomePage() {
       case "jewelery":
         vCategory = "jewelry";
         break;
+      default:
+        vCategory = "all";
+        break;
     }
 
-    if (vCategory === category) {
+    if (vCategory === category || category === "all") {
       return p;
     }
   });
