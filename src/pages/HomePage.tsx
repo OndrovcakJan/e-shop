@@ -29,6 +29,40 @@ export default function HomePage() {
     p.title.toLowerCase().includes(search.toLowerCase()),
   );
 
+  filtered?.filter((p: Product) => {
+    let vCategory = "";
+    switch (p.category) {
+      case "men's clothing":
+        vCategory = "men";
+        break;
+      case "women's clothing":
+        vCategory = "women";
+        break;
+      case "electronics":
+        vCategory = "electronics";
+        break;
+      case "jewelery":
+        vCategory = "jewelry";
+        break;
+    }
+
+    if (vCategory === category) {
+      return p;
+    }
+  });
+
+  switch (sort) {
+    case "low":
+      filtered?.sort((a: Product, b: Product) => a.price - b.price);
+      break;
+    case "high":
+      filtered?.sort((a: Product, b: Product) => b.price - a.price);
+      break;
+    case "top":
+      filtered?.sort((a: Product, b: Product) => b.rating.rate - a.rating.rate);
+      break;
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {
