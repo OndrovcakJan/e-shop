@@ -59,10 +59,27 @@ const ProductDetail = () => {
     addProduct(item);
   }
 
+  let category = "";
+  console.log(product.category);
+  switch (product.category) {
+    case "men's clothing":
+      category = "men";
+      break;
+    case "women's clothing":
+      category = "women";
+      break;
+    case "electronics":
+      category = "electronics";
+      break;
+    case "jewelery":
+      category = "jewelry";
+      break;
+  }
+
   return (
     <Cart>
       <div>
-        <Header />
+        <Header category={category} />
         <div className="max-w-6xl mx-auto px-6 py-8 mt-15 ml-8">
           {/* breadcrumb */}
           <div className="mb-6 flex items-center gap-2 text-sm text-gray-600 ml-8">
