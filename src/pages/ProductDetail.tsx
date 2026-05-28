@@ -72,7 +72,6 @@ const ProductDetail = () => {
             <span className="text-black">{product.title}</span>
           </div>
 
-          {/* main grid */}
           <div className="grid grid-cols-[55%_45%]  gap-10">
             {/* levý sloupec */}
 
@@ -111,18 +110,15 @@ const ProductDetail = () => {
               <p className="text-gray-700 mt-6 max-w-2xl ">{description}</p>
               <div className="flex flex-col gap-3 mt-4">
                 <div className="flex items-center gap-3">
-                  {/* quantity counter */}
                   <QuantityCounter
                     quantity={quantity}
                     onIncrease={() => setQuantity((q) => q + 1)}
                     onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
                   />
-                  {/* add to cart button */}
                   <button className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer">
                     Add to Cart
                   </button>
                 </div>
-                {/* info card pod add to cart btn */}
 
                 <div className="flex items-center justify-around bg-indigo-50 rounded-xl px-6 py-4 mt-2">
                   <div className="flex items-center gap-2 text-indigo-600">
@@ -133,9 +129,7 @@ const ProductDetail = () => {
                   </div>
                   <div className="flex items-center gap-2 text-indigo-600">
                     <SquareChevronLeft />
-                    <span className="text-sm font-medium">
-                      30-Day Returns
-                    </span>
+                    <span className="text-sm font-medium">30-Day Returns</span>
                   </div>
                 </div>
               </div>
