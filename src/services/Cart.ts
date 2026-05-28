@@ -21,9 +21,7 @@ export function addProduct(product: CartObject) {
     return;
   }
   const cart = JSON.parse(cartData) as CartObject[];
-  const itemIndex = cart.findIndex(
-    (item: CartObject) => item.id === product.id,
-  );
+  const itemIndex = cart.findIndex((item: CartObject) => item.id === product.id);
   if (itemIndex === -1) {
     cart.push(product);
     const json = JSON.stringify(cart);
@@ -33,6 +31,18 @@ export function addProduct(product: CartObject) {
   const existingAmount = cart[itemIndex].amount;
   const finalAmount = existingAmount + product.amount;
   cart[itemIndex].amount = finalAmount;
+  const json = JSON.stringify(cart);
+  localStorage.setItem("cart", json);
+}
+
+export function changeAmount(id: number, amount: number) {
+  const cartData = localStorage.getItem("cart");
+  if (!cartData) {
+    return;
+  }
+  const cart = JSON.parse(cartData) as CartObject[];
+  const itemIndex = cart.findIndex((item: CartObject) => item.id === id);
+  cart[itemIndex].amount += amount;
   const json = JSON.stringify(cart);
   localStorage.setItem("cart", json);
 }
