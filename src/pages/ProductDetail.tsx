@@ -7,7 +7,7 @@ import {
 import { Link, useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { AxiosError } from "axios";
-import QuantityCounter from "../components/common/QuantityCounter";
+import QuantityCounter from "../components/features/QuantityCounter";
 import { Rating } from "react-simple-star-rating";
 import RelatedList from "../components/features/RelatedList";
 import Cart from "../components/common/Cart";
