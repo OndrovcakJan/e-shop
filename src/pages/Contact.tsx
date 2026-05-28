@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Cart from "../components/common/Cart";
 import Header from "../components/common/Header";
 import { useState } from "react";
+import Footer from "../components/common/Footer.tsx";
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -179,6 +180,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </Cart>
   );
 };
