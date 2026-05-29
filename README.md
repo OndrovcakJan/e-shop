@@ -34,5 +34,5 @@ npm run dev
 
 ## Contributors
 
-- [Contributor 1](https://github.com/OndrovcakJan)
-- [Contributor 2](https://github.com/lavTval)
+- [OndrovcakJan](https://github.com/OndrovcakJan)
+- [lavTval](https://github.com/lavTval)
