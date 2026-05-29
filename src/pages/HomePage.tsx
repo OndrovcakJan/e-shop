@@ -107,7 +107,7 @@ export default function HomePage() {
             <div className="flex grow items-center justify-center w-full h-125 mt-5">
               <div className="bg-secondary w-full h-full flex justify-center items-center rounded-2xl">
                 <div className="flex flex-col items-center justify-center bg-background min-w-2/5 h-50 rounded-2xl">
-                  <h1 className="text-3xl font-extrabold">
+                  <h1 className="text-3xl font-extrabold underline">
                     Modern essentials for You
                   </h1>
                   <p className="text-center px-15">
