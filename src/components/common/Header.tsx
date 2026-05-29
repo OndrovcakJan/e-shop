@@ -22,7 +22,7 @@ export default function Header({ category, search, onSearchChange }: Props) {
 
   function getClass(to: string): string {
     if (to === cat) {
-      return "underline";
+      return "underline text-primary transition-all duration-100 underline-offset-3 decoration-dotted decoration-2";
     } else {
       return "";
     }
@@ -35,11 +35,11 @@ export default function Header({ category, search, onSearchChange }: Props) {
   return (
     <>
       <div className="flex flex-col gap-2 w-full h-12.25 bg-background fixed top-0 z-50">
-        <div className="hidden md:flex md:pt-2 md:mx-1">
+        <div className="hidden md:flex md:pt-2 md:mx-2">
           <Link to="/" className="text-primary font-extrabold text-2xl">
             VON
           </Link>
-          <div className="mx-auto flex gap-1.5">
+          <div className="mx-auto flex gap-3 font-medium">
             <Link to="/" className={getClass("all")}>
               Shop all
             </Link>
