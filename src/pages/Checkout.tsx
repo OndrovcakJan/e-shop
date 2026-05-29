@@ -1,4 +1,4 @@
-import { CreditCard, Truck, Archive } from "lucide-react";
+import { CreditCard, Truck, Archive, Lock, ShieldCheck } from "lucide-react";
 import Cart from "../components/common/Cart";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
@@ -184,7 +184,38 @@ const Checkout = () => {
               </div>
 
               <hr className="border-gray-200" />
-              
+
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>Subtotal</span>
+                  <span>${subtotal.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>Shipping</span>
+                  <span
+                    className={
+                      shippingCost === 0 ? "text-green-600 font-medium" : ""
+                    }
+                  >
+                    {shippingCost === 0 ? "Free" : `$${shippingCost}.00`}
+                  </span>
+                </div>
+              </div>
+
+              <hr className="border-gray-200" />
+              <div className="flex justify-between font-bold text-lg">
+                <span>Total</span>
+                <span className="text-indigo-600">${total.toFixed(2)}</span>
+              </div>
+
+              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 cursor-pointer">
+                <Lock size={16} />
+                Complete Purchase
+              </button>
+              <p className="text-xs text-gray-500 text-center flex items-center justify-center gap-1">
+                <ShieldCheck size={14} />
+                Secure encrypted checkout
+              </p>
             </div>
           </div>
         </div>
