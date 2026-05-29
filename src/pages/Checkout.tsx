@@ -1,9 +1,11 @@
-import { Truck } from "lucide-react";
+import { CreditCard, Truck } from "lucide-react";
 import Cart from "../components/common/Cart";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
+import { useState } from "react";
 
 const Checkout = () => {
+  const [shipping, setShipping] = useState<"standard" | "express">("standard");
   return (
     <Cart>
       <div>
@@ -57,6 +59,64 @@ const Checkout = () => {
                       className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
                     />
                   </div>
+                </div>
+              </div>
+              <div className="border border-gray-200 rounded-xl p-6 flex flex-col gap-4">
+                <h2 className="font-bold text-lg flex items-center gap-2">
+                  <CreditCard className="text-indigo-600" size={20} />
+                  Shipping Method
+                </h2>
+                <label
+                  className={`flex items-center justify-between border rounded-xl px-4 py-3 cursor-pointer ${shipping === "standard" ? "border-indigo-500 bg-indigo-50" : "border-gray-200"}`}
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="shipping"
+                      value="standard"
+                      checked={shipping === "standard"}
+                      onChange={() => setShipping("standard")}
+                      className="accent-indigo-600"
+                    />
+                    <div>
+                      <p className="font-medium text-sm">Standard Shipping</p>
+                      <p className="text-xs text-gray-500">3-5 business days</p>
+                    </div>
+                  </div>
+                  <span className="text-sm font-medium">Free</span>
+                </label>
+                <label
+                  className={`flex items-center justify-between border rounded-xl px-4 py-3 cursor-pointer ${shipping === "express" ? "border-indigo-500 bg-indigo-50" : "border-gray-200"}`}
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="shipping"
+                      value="express"
+                      checked={shipping === "express"}
+                      onChange={() => setShipping("express")}
+                      className="accent-indigo-600"
+                    />
+                    <div>
+                      <p className="font-medium text-sm">Express Shipping</p>
+                      <p className="text-xs text-gray-500">1-2 business days</p>
+                    </div>
+                  </div>
+                  <span className="text-sm font-medium">$15.00</span>
+                </label>
+              </div>
+              <div className="border border-gray-200 rounded-xl p-6 flex flex-col gap-4">
+                <h2 className="font-bold text-lg flex items-center gap-2">
+                  <CreditCard className="text-indigo-600" size={20} />
+                  Payment Details
+                </h2>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm text-gray-600">Name on Card</label>
+                  <input
+                    placeholder="John Doe"
+                    className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
+                  />
                 </div>
               </div>
             </div>
