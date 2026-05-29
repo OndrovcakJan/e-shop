@@ -14,6 +14,7 @@ import Cart from "../components/common/Cart";
 import { Truck, SquareChevronLeft } from "lucide-react";
 import Footer from "../components/common/Footer";
 import { addProduct, type CartObject } from "../services/Cart";
+import AddToCart from "../components/features/AddToCart";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -47,7 +48,7 @@ const ProductDetail = () => {
   }, [id]);
 
   if (loading) return <div>loading...</div>;
-  if (error) return <div>halo, Error: {error}</div>;
+  if (error) return <div>Error: {error}</div>;
   if (!product) return <div>Product not found</div>;
 
   const description = `${product.description.charAt(0).toUpperCase()}${product.description.slice(1)}`;
@@ -60,7 +61,6 @@ const ProductDetail = () => {
   }
 
   let category = "";
-  console.log(product.category);
   switch (product.category) {
     case "men's clothing":
       category = "men";
@@ -141,12 +141,8 @@ const ProductDetail = () => {
                     onDecrease={() => setQuantity((q) => Math.max(1, q - 1))}
                   />
                   {/* add to cart button */}
-                  <button
-                    onClick={handleCart}
-                    className="flex-1 bg-green-800 hover:bg-green-900 text-white font-semibold py-2 rounded-lg transition duration-200 text-bg cursor-pointer"
-                  >
-                    Add to Cart
-                  </button>
+
+                  <AddToCart onClick={handleCart} />
                 </div>
 
                 <div className="flex items-center justify-around bg-indigo-50 rounded-xl px-6 py-4 mt-2">
