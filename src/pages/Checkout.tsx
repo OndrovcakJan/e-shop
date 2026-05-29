@@ -3,9 +3,19 @@ import Cart from "../components/common/Cart";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
 import { useState } from "react";
+import { getCart, type CartObject } from "../services/Cart";
 
 const Checkout = () => {
   const [shipping, setShipping] = useState<"standard" | "express">("standard");
+  const [cartItems] = useState<CartObject[]>(() => getCart() ?? []);
+  const shippingCost = shipping === "standard" ? 0 : 15;
+
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.amount,
+    0,
+  );
+  const total = subtotal + shippingCost;
+
   return (
     <Cart>
       <div>
