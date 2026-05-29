@@ -4,8 +4,9 @@ const Footer = () => {
   return (
     <footer className="border-t border-gray-100 py-6 mt-18 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <span className="font-bold text-lg">LOGO</span>
-
+        <Link to="/" className="text-primary font-extrabold text-2xl">
+          VON
+        </Link>
         <div className="flex items-center gap-8 text-sm text-gray-600">
           <span className="cursor-pointer hover:text-black">
             Privacy Policy
