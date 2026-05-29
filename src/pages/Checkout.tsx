@@ -1,4 +1,4 @@
-import { CreditCard, Truck } from "lucide-react";
+import { CreditCard, Truck, Archive } from "lucide-react";
 import Cart from "../components/common/Cart";
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header";
@@ -63,7 +63,7 @@ const Checkout = () => {
               </div>
               <div className="border border-gray-200 rounded-xl p-6 flex flex-col gap-4">
                 <h2 className="font-bold text-lg flex items-center gap-2">
-                  <CreditCard className="text-indigo-600" size={20} />
+                  <Archive className="text-indigo-600" size={20} />
                   Shipping Method
                 </h2>
                 <label
@@ -117,6 +117,31 @@ const Checkout = () => {
                     placeholder="John Doe"
                     className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
                   />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label className="text-sm text-gray-600">Card Number</label>
+                  <input
+                    placeholder="0000 0000 0000 0000"
+                    className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-gray-600">Expiry Date</label>
+                    <input
+                      placeholder="MM/YY"
+                      className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label className="text-sm text-gray-600">CVV</label>
+                    <input
+                      placeholder="123"
+                      className="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-indigo-400"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
