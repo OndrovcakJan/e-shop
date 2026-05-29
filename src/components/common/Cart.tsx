@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { CartContext } from "../../context/CartContext";
 import clsx from "clsx";
 import { ArrowRight, X } from "lucide-react";
@@ -72,10 +73,10 @@ export default function Cart({ children }: { children: React.ReactNode }) {
               <h2 className="font-bold text-xl">Total</h2>
               <h2 className="ml-auto font-bold text-xl">${totalPrice}</h2>
             </div>
-            <button className="flex bg-green-800 hover:bg-green-900 transition-colors duration-200 rounded-lg text-white font-semibold px-10 py-3.5 w-full justify-center items-center">
+            <Link to="/checkout" className="flex bg-green-800 hover:bg-green-900 transition-colors duration-200 rounded-lg text-white font-semibold px-10 py-3.5 w-full justify-center items-center">
               Checkout now
               <ArrowRight />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
