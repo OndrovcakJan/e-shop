@@ -7,6 +7,7 @@ import { AxiosError } from "axios";
 import ItemCard from "../components/features/ItemCard";
 import Cart from "../components/common/Cart";
 import Footer from "../components/common/Footer";
+import Slider from "../components/features/Slider";
 
 export default function HomePage() {
   const params = useParams();
@@ -123,6 +124,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+
+            {!loading && <Slider data={data} />}
 
             <div ref={target}>
               <Options category={category} onChange={handleSort} />
