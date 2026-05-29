@@ -10,7 +10,11 @@ import Footer from "../components/common/Footer";
 
 export default function HomePage() {
   const params = useParams();
-  const category = params.category;
+  let category = params.category;
+  console.log(category)
+  if (category === undefined) {
+    category = "all";
+  }
 
   const target = useRef<HTMLDivElement>(null);
 
