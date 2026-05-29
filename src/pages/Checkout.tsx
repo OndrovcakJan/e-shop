@@ -156,8 +156,8 @@ const Checkout = () => {
               </div>
             </div>
             {/* pravý sloupec */}
+
             <div className="sticky top-24 border border-gray-200 rounded-xl p-6 flex flex-col gap-4">
-              
               <h2 className="font-bold text-lg">Order Summary</h2>
               <div className="flex flex-col gap-4">
                 {cartItems.map((item) => (
@@ -182,6 +182,9 @@ const Checkout = () => {
                   </div>
                 ))}
               </div>
+
+              <hr className="border-gray-200" />
+              
             </div>
           </div>
         </div>
