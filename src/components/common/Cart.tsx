@@ -27,7 +27,7 @@ export default function Cart({ children }: { children: React.ReactNode }) {
       {children}
       <div
         className={clsx(
-          "h-[calc(100vh-3.0625rem)] w-110 bg-background fixed top-12.25 transition-all duration-300 shadow-2xl shadow-background",
+          "h-[calc(100vh-3.0625rem)] w-110 bg-background fixed top-12.25 transition-all duration-300 shadow-2xl shadow-background z-20",
           { "right-0": isOpen, "-right-120": !isOpen },
         )}
       >
