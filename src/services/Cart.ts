@@ -43,6 +43,9 @@ export function changeAmount(id: number, amount: number) {
   const cart = JSON.parse(cartData) as CartObject[];
   const itemIndex = cart.findIndex((item: CartObject) => item.id === id);
   cart[itemIndex].amount += amount;
+  if (cart[itemIndex].amount <= 0) {
+    cart.splice(itemIndex, 1);
+  }
   const json = JSON.stringify(cart);
   localStorage.setItem("cart", json);
 }
