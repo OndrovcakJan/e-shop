@@ -11,7 +11,7 @@ import Footer from "../components/common/Footer";
 export default function HomePage() {
   const params = useParams();
   let category = params.category;
-  console.log(category)
+  console.log(category);
   if (category === undefined) {
     category = "all";
   }
@@ -104,26 +104,31 @@ export default function HomePage() {
         />{" "}
         <div className="flex justify-center mt-10">
           <div className="w-[96%]">
-            <div className="flex grow items-center justify-center w-full h-125 mt-5">
-              <div className="bg-secondary w-full h-full flex justify-center items-center rounded-2xl">
-                <div className="flex flex-col items-center justify-center bg-background min-w-2/5 h-50 rounded-2xl">
-                  <h1 className="text-3xl font-extrabold">
-                    Modern essentials for You
-                  </h1>
-                  <p className="text-center px-15">
-                    Curated collections designed to elevate your everyday
-                    living. Discover quality and craftsmanship.
-                  </p>
-                  <button
-                    onClick={scrollTo}
-                    className="bg-primary mt-4 px-6 py-3 rounded-[15px] text-background font-bold hover:scale-105 transition-transform duration-300"
-                  >
-                    Explore collection
-                  </button>
-                </div>
+            <div
+              className="w-full h-125 mt-5 rounded-2xl flex items-center justify-center relative overflow-hidden"
+              style={{
+                backgroundImage: "url('/bgpic.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="absolute inset-0 bg-black/40 rounded-2xl" />
+              <div className="relative z-10 flex flex-col items-center justify-center text-white text-center px-8">
+                <h1 className="text-3xl font-extrabold">
+                  Modern essentials for You
+                </h1>
+                <p className="text-center px-15 mt-2 text-gray-50">
+                  Curated collections designed to elevate your everyday living.
+                  Discover quality and craftsmanship.
+                </p>
+                <button
+                  onClick={scrollTo}
+                  className="bg-primary mt-4 px-6 py-3 rounded-[15px] text-background font-bold hover:scale-105 transition-transform duration-300 cursor-pointer"
+                >
+                  Explore collection
+                </button>
               </div>
             </div>
-
             <div ref={target}>
               <Options category={category} onChange={handleSort} />
               <div className="flex flex-wrap gap-3.5 justify-center mt-5">
