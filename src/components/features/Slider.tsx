@@ -1,6 +1,6 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Link } from 'react-router';
 
 // Core Swiper styles required for functionality
 import 'swiper/css';
@@ -26,7 +26,7 @@ export default function ProductShowcase({data}: Props) {
         navigation={true}
         pagination={{ clickable: true }}
         autoplay={{
-          delay: 3000,
+          delay: 2000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
@@ -61,9 +61,9 @@ export default function ProductShowcase({data}: Props) {
                 </p>
 
                 {/* Button pushed to the bottom via mt-auto */}
-                <button className="mt-auto w-full rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <Link to={`/product/${item.id}`} className="mt-auto w-full rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                   View Product
-                </button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>
