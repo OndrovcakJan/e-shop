@@ -87,10 +87,7 @@ const ProductDetail = () => {
               Home
             </Link>
             <span>-</span>
-            <Link
-              to={`/category/${product.category}`}
-              className="capitalize hover:text-black"
-            >
+            <Link to={`/${category}`} className="capitalize hover:text-black">
               {product.category}
             </Link>
             <span>-</span>
